@@ -72,6 +72,7 @@ NodeGraphicsObject(FlowScene& scene, const NodeIndex& index)
   };
   connect(this, &QGraphicsObject::xChanged, this, onMoveSlot);
   connect(this, &QGraphicsObject::yChanged, this, onMoveSlot);
+
 }
 
 NodeGraphicsObject::
@@ -468,4 +469,11 @@ mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
   flowScene().model()->nodeDoubleClicked(_nodeIndex, event->screenPos());
 }
 
+void
+NodeGraphicsObject::
+contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+{
+  _scene.nodeContextMenu(node(), mapToScene(event->pos()));
+}
+ 
 } // namespace QtNodes
