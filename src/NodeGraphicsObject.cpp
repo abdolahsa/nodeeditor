@@ -286,7 +286,7 @@ mousePressEvent(QGraphicsSceneMouseEvent * event)
           _state.connections(portToCheck, portIndex);
 
         // start dragging existing connection if it's setup to only have one connection
-        if (!connections.empty() && model.nodePortConnectionPolicy(_nodeIndex, portIndex, portToCheck) == ConnectionPolicy::One)
+        if (!connections.empty() && model.nodePortConnectionPolicy(_nodeIndex, portToCheck, portIndex) == ConnectionPolicy::One)
         {
           auto con = connections[0];
           
@@ -473,7 +473,7 @@ void
 NodeGraphicsObject::
 contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 {
-  _scene.nodeContextMenu(node(), mapToScene(event->pos()));
+  flowScene().model()->nodeContextMenu(index(), event->screenPos());
 }
  
 } // namespace QtNodes
